@@ -4,7 +4,7 @@
 import sys
 from libLGTV_serial import LGTV
 
-model = '19LV2500'					# Change this to your TV's model
+model = '19LV2500'                    # Change this to your TV's model
 
 # Change this to the serial port you're using
 # On Linux it might look like '/dev/ttyS0'
