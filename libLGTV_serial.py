@@ -129,10 +129,10 @@ class LGTV:
             state_codes = (self.codes[states[0]], self.codes[states[1]])
             return self.toggle(self.status(state_codes[0]), state_codes)
         elif command.endswith('up'):
-            key = command.rstrip('up') + 'level'
+            key = command[:-2] + 'level'
             return self.increment(self.status(self.codes[key]))
         elif command.endswith('down'):
-            key = command.rstrip('down') + 'level'
+            key = command[:-4] + 'level'
             return self.decrement(self.status(self.codes[key]))
         else:
             return self.codes[command]
