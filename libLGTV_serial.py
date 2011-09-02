@@ -104,9 +104,15 @@ class LGTV:
             
     def available_commands(self):
         print("Some features (such as a 4th HDMI port) might not be available for your TV model")
-        commands = self.toggles.copy()
-        commands.update(self.codes)
-        pprint(commands)
+        commands = self.codes.copy()
+        commands.update(self.toggles)
+        for command in commands.keys():
+            code = commands[command]
+            if command.endswith('level'):
+                print("%s : %s" % (command[:-5] + 'up', code[:-2] + b'??'))
+                print("%s : %s" % (command[:-5] + 'down', code[:-2] + b'??'))
+            else:
+                print("{0} : {1}".format(command, code))
 
     def add_toggle(self, command, state0, state1):
         self.toggles['toggle' + command] = (state0, state1)
