@@ -1,5 +1,5 @@
-# libLGTV-serial #
-libLGTV-serial is a Python library to control LG TVs via their serial (RS232) port. It aims to reduce the legwork needed to use this functionality on your TV - simply enter your TV model number and serial port and you're good to go!
+# libLGTV_serial #
+libLGTV_serial is a Python library to control LG TVs via their serial (RS232) port. It aims to reduce the legwork needed to use this functionality on your TV - simply enter your TV model number and serial port and you're good to go!
 
 ## Requirements ##
 - Python 3.x
