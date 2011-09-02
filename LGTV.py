@@ -2,7 +2,7 @@
 # script --poweroff
 #
 import sys
-from libLGTV-serial import LGTV
+from libLGTV_serial import LGTV
 
 model = '19LV2500'					# Change this to your TV's model
 
@@ -12,9 +12,9 @@ model = '19LV2500'					# Change this to your TV's model
 serial_port = "\\.\COM4"
 
 if len(sys.argv) != 2: 
-  print 'Usage: {0} <command>'.format(sys.argv[0])
-	print 'Example: {0} --togglepower'.format(sys.argv[0])
-  sys.exit(1)
+    print('Usage: {0} <command>'.format(sys.argv[0]))
+    print('Example: {0} --togglepower'.format(sys.argv[0]))
+    sys.exit(1)
 
 tv = LGTV(model, serial_port)
 
