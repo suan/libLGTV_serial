@@ -17,7 +17,7 @@ This has only been tested on Windows, and on a 42LK450 LG LCD TV. However...
     - Create a feature request in [the Issues page](https://github.com/suan/libLGTV_serial/issues) or if you don't want to create a github account you can email me at yeosuanaik@gmail.com
 
 ## Usage ##
-Currently I'm using the library through the LGTV.py script, which is invoked everytime certain buttons are pressed on my HDTV remote. The script is also a simple example of what the library can do and should be enough for most needs. (However, there's no reason you can't use the library in other ways, such as in a client-server configuration.) The first things you should be doing is to change the model to match your TV and also change the serial port to match yours. You can then run the available_commands script to view all available commands for your TV (make sure to set the correct TV model here too). This is also a good way to double check the command codes against those in your Owner's Manual.
+Currently I'm using the library through the LGTV.py script, which is invoked everytime certain buttons are pressed on my HDTV remote. The script is also a simple example of what the library can do and should be enough for most needs. (However, there's no reason you can't use the library in other ways, such as in a client-server configuration.) The first things you should be doing is to change the model to match your TV and also change the serial port to match yours. You can then run the available_commands.py script to view all available commands for your TV (make sure to set the correct TV model here too). This is also a good way to double check the command codes against those in your Owner's Manual.
 ### Toggles ###
 Toggles are commands that flip between 2 states, such as power on/off. LGTV.py contains an example of how you can add toggles you want to use, namely:
 
@@ -42,8 +42,11 @@ I'll add more features as there's demand for them. Some that I forsee are:
 
 - Covering more of the available commands
 - Switching to a listening server model to improve performance
+
 Either create a feature request on the issues page or email me if theres stuff you'd like added.
+
 Same goes for any bugs you find, create an issue or email me.
+
 And contributions are very much welcome!
 
 ## Credits ##
