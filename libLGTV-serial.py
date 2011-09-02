@@ -127,7 +127,7 @@ class LGTV:
 	def query(self, command):
 			connection.write(command + b'\r')
 			response = connection.read(10)
-			return response[-3:-1]
+			return response
 			
 	def send(self, command):
 		if wait_secs = debounces[command]:
@@ -155,7 +155,7 @@ class LGTV:
 			return delta(command, -1)
 
 	def toggle(self, command, togglecommands):
-			level = query(command)
+			level = query(command)[-3:-1]
 			toggledata = (togglecommands[0][-2:], togglecommands[1][-2:])
 			data = toggledata[0]
 			if level == toggledata[0]:
