@@ -41,6 +41,7 @@ tv.debounce('togglepower', 0.7)
 I'll add more features as there's demand for them. Some that I forsee are:
 
 - Covering more of the available commands
+- Python 2.x support
 - Switching to a listening server model to improve performance
 
 Either create a feature request on the issues page or email me if theres stuff you'd like added.
