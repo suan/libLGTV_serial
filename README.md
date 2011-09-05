@@ -24,7 +24,7 @@ Toggles are commands that flip between 2 states, such as power on/off. LGTV.py c
 ```
 tv.add_toggle('input', 'inputrgbpc', 'inputdigitalcable')
 ```
-From then on, when you pass in '--toggleinput' to the script, it will switch between the 'inputrgbpc' and 'inputdigitalcable' to send to the TV. The 'toggleinput' and 'togglemute' toggles are already included for your convenience.
+From then on, when you pass in '--toggleinput' to the script, it will switch between the 'inputrgbpc' and 'inputdigitalcable' to send to the TV. The 'togglepower' and 'togglemute' toggles are already included for your convenience.
 ### Debouncing ###
 Sometimes a single remote button press is detected as many. For example, EventGhost generates over 10 events every time the power button on my HDTV remote is pressed. libLGTV_serial takes care of this for you, but you have to specify which commands you're having trouble with. In my case, it looks like
 
