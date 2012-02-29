@@ -7,6 +7,7 @@ from filelock import FileLock
 from pprint import pprint
 
 
+actual_codes = {}
 common_codes = {
     'aspect43'      : b"kc 00 01",
     'aspect169'     : b"kc 00 02",
@@ -16,8 +17,8 @@ common_codes = {
     'mute'          : b"ke 00 00",
     'unmute'        : b"ke 00 01"
 }
-LV_LK_PW_LH_LF_LU_CL_codes = common_codes.copy()
-LV_LK_PW_LH_LF_LU_CL_codes.update({
+actual_codes['LK450_etc'] = common_codes.copy()
+actual_codes['LK450_etc'].update({
     'inputdigitalantenna'   : b"xb 00 00",
     'inputdigitalcable'     : b"xb 00 01",
     'inputanalogantenna'    : b"xb 00 10",
@@ -32,8 +33,8 @@ LV_LK_PW_LH_LF_LU_CL_codes.update({
     'inputhdmi3'            : b"xb 00 92",
     'inputhdmi4'            : b"xb 00 93"
 })
-LE_LD_LW_codes = common_codes.copy()
-LE_LD_LW_codes.update({
+actual_codes['LE5300_etc'] = common_codes.copy()
+actual_codes['LE5300_etc'].update({
     'inputdtv'              : b"xb 00 00",
     'inputanalogantenna'    : b"xb 00 10",
     'inputanalogcable'      : b"xb 00 11",
@@ -46,8 +47,8 @@ LE_LD_LW_codes.update({
     'inputhdmi3'            : b"xb 00 92",
     'inputhdmi4'            : b"xb 00 93"
 })
-LC_PC_codes = common_codes.copy()
-LC_PC_codes.update({
+actual_codes['LC7D_etc'] = common_codes.copy()
+actual_codes['LC7D_etc'].update({
     'inputdtv'      : b"xb 00 00",
     'inputav1'      : b"kb 00 02",
     'inputav2'      : b"kb 00 03",
@@ -58,19 +59,21 @@ LC_PC_codes.update({
     'inputhdmi1'    : b"kb 00 08",
     'inputhdmi2'    : b"kb 00 09"
 })
-all_codes = {
-    'LV': LV_LK_PW_LH_LF_LU_CL_codes,
-    'LK': LV_LK_PW_LH_LF_LU_CL_codes,
-    'PW': LV_LK_PW_LH_LF_LU_CL_codes,
-    'LF': LV_LK_PW_LH_LF_LU_CL_codes,
-    'LU': LV_LK_PW_LH_LF_LU_CL_codes,
-    'CL': LV_LK_PW_LH_LF_LU_CL_codes,
-    'LC': LC_PC_codes,
-    'PC': LC_PC_codes,
-    'LE': LE_LD_LW_codes,
-    'LD': LE_LD_LW_codes,
-    'LW': LE_LD_LW_codes
+reverse_code_map = {
+    'LK450_etc': ('LV2500', 'LV2520', 'LV3500', 'LV3520', 'LK330', 'LK430', 'LK450',
+                    'LK520', 'PW340', 'PW350', 'PW350U', 'PW350R', 'LH20', 'LH200C',
+                    'LH30', 'LF11', 'LF21', 'LU55', 'CL10', 'CL20', 'CL11', 'PZ200'),
+    'LC7D_etc': ('LC7D', 'LC7DC', 'PC5D', 'PC5DC'),
+    'LE5300_etc': ('LE5300', 'LE5500', 'LE7300', 'LE530C', 'LD420', 'LD450', 'LD450C',
+                    'LD520', 'LD520C', 'LD630', 'LW5600', 'LW5700', 'LW6500', 'LW9800',
+                    'LV3700', 'LV5400', 'LV5500', 'LV9500', 'LK530', 'LK550', 'PZ750',
+                    'PZ950', 'PZ950U')
 }
+all_codes = {}
+# populate model suffix lookup hash
+for suffix_codes, suffixes in reverse_code_map.iteritems():
+    for suffix in suffixes:
+        all_codes[suffix] = actual_codes[suffix_codes]
 
 LOCK_PATH = os.path.join(os.getcwd(), 'locks')
 
@@ -78,7 +81,7 @@ LOCK_PATH = os.path.join(os.getcwd(), 'locks')
 class LGTV:    
     def __init__(self, model, port):
         self.model = model.replace('-', '').upper()
-        self.codes = all_codes[self.model[2:4]]
+        self.codes = all_codes[self.model[2:]]
         self.port = port
         self.connection = None
         self.toggles = {
