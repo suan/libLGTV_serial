@@ -75,7 +75,7 @@ for suffix_codes, suffixes in reverse_code_map.items():
     for suffix in suffixes:
         all_codes[suffix] = actual_codes[suffix_codes]
 
-LOCK_PATH = os.path.join(os.getcwd(), 'locks')
+LOCK_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'locks')
 
 
 class LGTV:    
