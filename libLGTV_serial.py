@@ -32,8 +32,8 @@ LV_LK_PW_LH_LF_LU_CL_codes.update({
     'inputhdmi3'            : b"xb 00 92",
     'inputhdmi4'            : b"xb 00 93"
 })
-LE_LD_codes = common_codes.copy()
-LE_LD_codes.update({
+LE_LD_LW_codes = common_codes.copy()
+LE_LD_LW_codes.update({
     'inputdtv'              : b"xb 00 00",
     'inputanalogantenna'    : b"xb 00 10",
     'inputanalogcable'      : b"xb 00 11",
@@ -67,8 +67,9 @@ all_codes = {
     'CL': LV_LK_PW_LH_LF_LU_CL_codes,
     'LC': LC_PC_codes,
     'PC': LC_PC_codes,
-    'LE': LE_LD_codes,
-    'LD': LE_LD_codes
+    'LE': LE_LD_LW_codes,
+    'LD': LE_LD_LW_codes,
+    'LW': LE_LD_LW_codes
 }
 
 LOCK_PATH = os.path.join(os.getcwd(), 'locks')
