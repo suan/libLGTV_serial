@@ -71,7 +71,7 @@ reverse_code_map = {
 }
 all_codes = {}
 # populate model suffix lookup hash
-for suffix_codes, suffixes in reverse_code_map.iteritems():
+for suffix_codes, suffixes in reverse_code_map.items():
     for suffix in suffixes:
         all_codes[suffix] = actual_codes[suffix_codes]
 
