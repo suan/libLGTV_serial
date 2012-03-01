@@ -41,6 +41,9 @@ This will make sure that all 'togglepower' calls within 0.5 seconds of the first
 tv.debounce('togglepower', 0.7)
 ```
 
+### Serial/RS232 Tips ###
+Make sure you use a "crossover" or "null modem" cable or adapter, as is mentioned in the LG TV manuals.
+
 ## TODO/Bugs/Contributions ##
 I'll add more features as there's demand for them. Some that I forsee are:
 
