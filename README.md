@@ -17,7 +17,15 @@ This has only been tested on Windows, and on a 42LK450 LG LCD TV. However...
     - Create a feature request in [the Issues page](https://github.com/suan/libLGTV_serial/issues) or if you don't want to create a github account you can email me at yeosuanaik@gmail.com
 
 ## Usage ##
-Download the files through the "ZIP" link near the top left of the page. Currently I'm using the library through the LGTV.py script, which is invoked everytime certain buttons are pressed on my HDTV remote. The script is also a simple example of what the library can do and should be enough for most needs. (However, there's no reason you can't use the library in other ways, such as in a client-server configuration.) The first things you should be doing is to change the model to match your TV and also change the serial port to match yours. You can then run the available_commands.py script to view all available commands for your TV (make sure to set the correct TV model here too). Now, to send one of those commands to the TV, all you have to do is invoke the script with the command, like this:
+Currently I'm using the library through the LGTV.py script, which is invoked everytime certain buttons are pressed on my HDTV remote. The script is also a simple example of what the library can do and should be enough for most needs. (However, there's no reason you can't use the library in other ways, such as in a client-server configuration.)
+
+The following assumes you will just be using the LGTV.py script as I am:
+
+1. Download the files through the "ZIP" link near the top left of the page.
+2. Change the model to match that of your TV
+3. Change the serial port to match what your serial port is named. There is more info on this in the comments in the LGTV.py script.
+3. You can then run the available_commands.py script to view all available commands for your TV (make sure to set the correct TV model here too).
+4. To send one of those commands to the TV, all you have to do is invoke the script with the command, like this:
 
 ```
 python LGTV.py --togglepower
