@@ -152,13 +152,15 @@ class LGTV:
     def send(self, command):
         if command in self.debounces:
             wait_secs = self.debounces[command]
-            self.connection = self.get_port()
+            if self.connection == None:
+                self.connection = self.get_port()
             lock_path = os.path.join(LOCK_PATH, '.' + command + '_lock')
             with FileLock(lock_path, timeout=0) as lock:
                 self.query(self.lookup(command))
                 time.sleep(wait_secs)
         else:
-            self.connection = self.get_port_ensured()
+            if self.connection == None:
+                self.connection = self.get_port_ensured()
             self.query(self.lookup(command))
         self.connection.close()
 
