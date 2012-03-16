@@ -3,6 +3,7 @@
 import serial
 import os
 import time
+import tempdir
 from filelock import FileLock
 from pprint import pprint
 
@@ -74,8 +75,6 @@ all_codes = {}
 for suffix_codes, suffixes in reverse_code_map.items():
     for suffix in suffixes:
         all_codes[suffix] = actual_codes[suffix_codes]
-
-LOCK_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'locks')
 
 
 class LGTV:    
@@ -154,7 +153,7 @@ class LGTV:
             wait_secs = self.debounces[command]
             if self.connection == None:
                 self.connection = self.get_port()
-            lock_path = os.path.join(LOCK_PATH, '.' + command + '_lock')
+            lock_path = os.path.join(tempdir.gettempdir(), '.' + command + '_lock')
             with FileLock(lock_path, timeout=0) as lock:
                 self.query(self.lookup(command))
                 time.sleep(wait_secs)
