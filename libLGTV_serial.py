@@ -3,7 +3,7 @@
 import serial
 import os
 import time
-import tempdir
+import tempfile 
 from filelock import FileLock
 from pprint import pprint
 
@@ -153,7 +153,7 @@ class LGTV:
             wait_secs = self.debounces[command]
             if self.connection == None:
                 self.connection = self.get_port()
-            lock_path = os.path.join(tempdir.gettempdir(), '.' + command + '_lock')
+            lock_path = os.path.join(tempfile.gettempdir(), '.' + command + '_lock')
             with FileLock(lock_path, timeout=0) as lock:
                 self.query(self.lookup(command))
                 time.sleep(wait_secs)
