@@ -60,6 +60,25 @@ actual_codes['LC7D_etc'].update({
     'inputhdmi1'    : b"kb 00 08",
     'inputhdmi2'    : b"kb 00 09"
 })
+actual_codes['01C_etc'] = common_codes.copy()
+actual_codes['01C_etc'].update({
+    'inputav'       : b"kb 00 02",
+    'inputcomp1'    : b"kb 00 04",
+    'inputcomp2'    : b"kb 00 05",
+    'inputrgbdtv'   : b"kb 00 06",
+    'inputrgbpc'    : b"kb 00 07",
+    'inputhdmidtv'  : b"kb 00 08",
+    'inputhdmipc'   : b"kb 00 09"
+})
+actual_codes['02C_etc'] = common_codes.copy()
+actual_codes['02C_etc'].update({
+    'inputav'       : b"kb 00 02",
+    'inputcomp1'    : b"kb 00 04",
+    'inputcomp2'    : b"kb 00 05",
+    'inputrgbpc'    : b"kb 00 07",
+    'inputhdmidtv'  : b"kb 00 08",
+    'inputhdmipc'   : b"kb 00 09"
+})
 reverse_code_map = {
     'LK450_etc': ('LV2500', 'LV2520', 'LV3500', 'LV3520', 'LK330', 'LK430', 'LK450',
                     'LK520', 'PW340', 'PW350', 'PW350U', 'PW350R', 'LH20', 'LH200C',
@@ -68,7 +87,9 @@ reverse_code_map = {
     'LE5300_etc': ('LE5300', 'LE5500', 'LE7300', 'LE530C', 'LD420', 'LD450', 'LD450C',
                     'LD520', 'LD520C', 'LD630', 'LW5600', 'LW5700', 'LW6500', 'LW9800',
                     'LV3700', 'LV5400', 'LV5500', 'LV9500', 'LK530', 'LK550', 'PZ750',
-                    'PZ950', 'PZ950U')
+                    'PZ950', 'PZ950U'),
+    '01C_etc': ('01C', '01C-BA'),
+    '02C_etc': ('02C', '02C-BA', '02C-BH')
 }
 all_codes = {}
 # populate model suffix lookup hash
@@ -79,8 +100,14 @@ for suffix_codes, suffixes in reverse_code_map.items():
 
 class LGTV:    
     def __init__(self, model, port):
-        self.model = model.replace('-', '').upper()
-        self.codes = all_codes[self.model[2:]]
+        self.model = model.upper()
+
+        # Ignore digits which indicate the TV's screen size
+        if model.startswith('M'):
+            self.codes = all_codes[self.model[3:]]  # Ignore the leading 'M' too
+        else:
+            self.codes = all_codes[self.model[2:]]
+
         self.port = port
         self.connection = None
         self.toggles = {
