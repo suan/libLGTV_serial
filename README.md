@@ -48,7 +48,7 @@ tv.debounce('togglepower', 0.7)
 ```
 
 ### Serial/RS232 Tips ###
-Make sure you use a "crossover" or "null modem" cable or adapter, as is mentioned in the LG TV manuals.
+Make sure you read your TV model's manual to see whether you need a "crossover/null-modem" or "straight-through" cable or adapter, and buy/use the correct one.
 
 ## TODO/Bugs/Contributions ##
 I'll add more features as there's demand for them. Some that I forsee are:
