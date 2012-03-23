@@ -50,15 +50,17 @@ actual_codes['LE5300_etc'].update({
 })
 actual_codes['LC7D_etc'] = common_codes.copy()
 actual_codes['LC7D_etc'].update({
-    'inputdtv'      : b"xb 00 00",
-    'inputav1'      : b"kb 00 02",
-    'inputav2'      : b"kb 00 03",
-    'inputcomp1'    : b"kb 00 04",
-    'inputcomp2'    : b"kb 00 04",
-    'inputrgbpc'    : b"kb 00 07",
-    'inputdvi'      : b"kb 00 08",
-    'inputhdmi1'    : b"kb 00 08",
-    'inputhdmi2'    : b"kb 00 09"
+    'inputdtvantenna'       : b"xb 00 00",
+    'inputdtvcable'         : b"xb 00 01",
+    'inputanalogantenna'    : b"xb 00 10",
+    'inputanalogcable'      : b"xb 00 11",
+    'inputav1'              : b"xb 00 20",
+    'inputav2'              : b"xb 00 21",
+    'inputcomp1'            : b"xb 00 40",
+    'inputcomp2'            : b"xb 00 41",
+    'inputrgbpc'            : b"xb 00 60",
+    'inputhdmi1'            : b"xb 00 90",
+    'inputhdmi2'            : b"xb 00 91"
 })
 actual_codes['01C_etc'] = common_codes.copy()
 actual_codes['01C_etc'].update({
