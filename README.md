@@ -1,5 +1,5 @@
 # libLGTV_serial #
-libLGTV_serial is a Python library to control LG TVs via their serial (RS232) port. It aims to reduce the legwork needed to use this functionality on your TV - simply enter your TV model number and serial port and you're good to go!
+libLGTV_serial is a Python library to control LG TVs (or monitors with serial ports) via their serial (RS232) port. It aims to reduce the legwork needed to use this functionality on your TV - simply enter your TV model number and serial port and you're good to go!
 
 ## Requirements ##
 - Python 3.x
@@ -7,14 +7,12 @@ libLGTV_serial is a Python library to control LG TVs via their serial (RS232) po
     - Windows: http://pypi.python.org/pypi/pyserial
     - Debian/Ubuntu Linux: sudo apt-get install python-serial
 
-## Supported TVs/Operating Systems ##
-This has only been tested on Windows, and on a 42LK450 LG LCD TV. However...
-
-- I am fairly certain that it will work on Linux and Mac OS X as well
-- A large number of LG TVs are supported, a full list can be found on [the wiki](https://github.com/suan/libLGTV_serial/wiki/Supported-TV-Models). If your model isn't listed there, you can...
-    - Modify the code and add it yourself. The code is pretty simple and straightforward. Look up the codes from the Owner's Manual on the included CD-ROM or from [LG's Support Website](http://www.lg.com/us/support/index.jsp) (Look for the section titled "EXTERNAL CONTROL THROUGH RS-232C"). If you added your model this way I would really appreciate a pull request! =)
-    - OR
-    - Create a feature request in [the Issues page](https://github.com/suan/libLGTV_serial/issues) or if you don't want to create a github account you can email me at yeosuanaik@gmail.com
+## Supported Models/Operating Systems ##
+- All OSes are supported. If you run into trouble please let me know. 
+- A large number of LG TVs and monitors are supported -- a full list can be found on [the wiki](https://github.com/suan/libLGTV_serial/wiki/Supported-TV-Models). If your model isn't listed there, you can...
+  - Modify the code and add it yourself. The code is pretty simple and straightforward. Look up the codes from the Owner's Manual on the included CD-ROM or from [LG's Support Website](http://www.lg.com/us/support/index.jsp) (Look for the section titled "EXTERNAL CONTROL THROUGH RS-232C"). If you added your model this way I would really appreciate a pull request! =)
+  - OR
+  - Create a feature request in [the Issues page](https://github.com/suan/libLGTV_serial/issues) or if you don't want to create a github account you can email me at yeosuanaik@gmail.com
 
 ## Usage ##
 Currently I'm using the library through the LGTV.py script, which is invoked everytime certain buttons are pressed on my HDTV remote. The script is also a simple example of what the library can do and should be enough for most needs. (However, there's no reason you can't use the library in other ways, such as in a client-server configuration.)
