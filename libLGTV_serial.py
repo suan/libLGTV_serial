@@ -34,6 +34,21 @@ actual_codes['LK450_etc'].update({
     'inputhdmi3'            : b"xb 00 92",
     'inputhdmi4'            : b"xb 00 93"
 })
+actual_codes['PJ250_etc'] = common_codes.copy()
+actual_codes['PJ250_etc'].update({
+    'inputdtvantenna'       : b"xb 00 00",
+    'inputdtvcable'         : b"xb 00 01",
+    'inputanalogantenna'    : b"xb 00 10",
+    'inputanalogcable'      : b"xb 00 11",
+    'inputav1'              : b"xb 00 20",
+    'inputav2'              : b"xb 00 21",
+    'inputcomp1'            : b"xb 00 40",
+    'inputcomp2'            : b"xb 00 41",
+    'inputrgbpc'            : b"xb 00 60",
+    'inputhdmi1'            : b"xb 00 90",
+    'inputhdmi2'            : b"xb 00 91",
+    'inputhdmi3'            : b"xb 00 92"
+})
 actual_codes['LE5300_etc'] = common_codes.copy()
 actual_codes['LE5300_etc'].update({
     'inputdtv'              : b"xb 00 00",
@@ -85,6 +100,8 @@ reverse_code_map = {
     'LK450_etc': ('LV2500', 'LV2520', 'LV3500', 'LV3520', 'LK330', 'LK430', 'LK450',
                     'LK520', 'PW340', 'PW350', 'PW350U', 'PW350R', 'LH20', 'LH200C',
                     'LH30', 'LF11', 'LF21', 'LU55', 'CL10', 'CL20', 'CL11', 'PZ200'),
+    'PJ250_etc': ('PJ250', 'PK250', 'PK280', 'PK290', 'PJ340', 'PJ350', 'PK350',
+                    'PKPK340', 'PK540', 'PJ550', 'PK550', 'PJ350C', 'PK550C'),
     'LC7D_etc': ('LC7D', 'LC7DC', 'PC5D', 'PC5DC'),
     'LE5300_etc': ('LE5300', 'LE5500', 'LE7300', 'LE530C', 'LD420', 'LD450', 'LD450C',
                     'LD520', 'LD520C', 'LD630', 'LW5600', 'LW5700', 'LW6500', 'LW9800',
