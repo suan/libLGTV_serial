@@ -169,31 +169,47 @@ class LGTV:
     def debounce(self, command, wait_secs=0.5):
         self.debounces[command] = wait_secs
     
-    def status(self, code):
+    def status_code(self, code):
         return code[:-2] + b'ff'
 
     def lookup(self, command):
         if command.startswith('toggle'):
             states = self.toggles.get(command)
             state_codes = (self.codes[states[0]], self.codes[states[1]])
-            return self.toggle(self.status(state_codes[0]), state_codes)
+            return self.toggle(self.status_code(state_codes[0]), state_codes)
         elif command.endswith('up'):
             key = command[:-2] + 'level'
-            return self.increment(self.status(self.codes[key]))
+            return self.increment(self.status_code(self.codes[key]))
         elif command.endswith('down'):
             key = command[:-4] + 'level'
-            return self.decrement(self.status(self.codes[key]))
+            return self.decrement(self.status_code(self.codes[key]))
         else:
             return self.codes[command]
 
-    def query(self, command):
+    # Returns None on error, full response otherwise
+    def query_full(self, command):
         self.connection.write(command + b'\r')
         response = self.connection.read(10)
-        return response
+        if is_success(response):
+            return response
 
     def query_data(self, command):
-        return self.query(command)[-3:-1]
+        response = self.query_full(command)
+        return response and response[-3:-1]
+
+    # returns None on error, 2-char status for status commands, and True otherwise
+    def query(self, command):
+        if is_status(command):
+            return self.query_data(self.lookup(command))
+        else:
+            return self.query_full(self.lookup(command)) and True
        
+    def is_status(self, command):
+        return command.endswith('status')
+
+    def is_success(self, response):
+        return response[-5:-3] == b'OK'
+
     def send(self, command):
         if command in self.debounces:
             wait_secs = self.debounces[command]
@@ -201,13 +217,14 @@ class LGTV:
                 self.connection = self.get_port()
             lock_path = os.path.join(tempfile.gettempdir(), '.' + command + '_lock')
             with FileLock(lock_path, timeout=0) as lock:
-                self.query(self.lookup(command))
+                response = self.query(self.lookup(command))
                 time.sleep(wait_secs)
         else:
             if self.connection == None:
                 self.connection = self.get_port_ensured()
-            self.query(self.lookup(command))
+            response = self.query(self.lookup(command))
         self.connection.close()
+        return response
 
     def hex_bytes_delta(self, hex_bytes, delta):
         return bytes(hex(int(hex_bytes, 16) + delta)[2:4], 'ascii')
