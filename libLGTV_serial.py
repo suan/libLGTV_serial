@@ -5,7 +5,7 @@ import os
 import time
 import tempfile 
 from filelock import FileLock
-from pprint import pprint
+# from pprint import pprint
 
 
 actual_codes = {}
@@ -231,8 +231,6 @@ class LGTV:
 
     def delta(self, command, delta):
         level = self.query_data(command)
-        pprint(level)
-        pprint(command)
         return command[0:6] + self.hex_bytes_delta(level, delta)
 
     def increment(self, command):
