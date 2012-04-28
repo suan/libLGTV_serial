@@ -196,7 +196,7 @@ class LGTV:
             return self.query_full(self.lookup(command)) and True
        
     def is_status(self, command):
-        return command.endswith('status')
+        return command.endswith('status') or command.endswith('level')
 
     def is_success(self, response):
         return response[-5:-3] == b'OK'
