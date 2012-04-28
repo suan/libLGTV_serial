@@ -202,7 +202,7 @@ class LGTV:
         return response[-5:-3] == b'OK'
 
     def hex_bytes_delta(self, hex_bytes, delta):
-        return bytes(hex(int(hex_bytes, 16) + delta)[2:4], 'ascii')
+        return bytearray(hex(int(hex_bytes, 16) + delta)[2:4], 'ascii')
 
     def delta(self, code, delta):
         level = self.query_data(code)

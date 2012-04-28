@@ -2,7 +2,7 @@
 libLGTV_serial is a Python library to control LG TVs (or monitors with serial ports) via their serial (RS232) port. It aims to reduce the legwork needed to use this functionality on your TV - simply enter your TV model number and serial port and you're good to go!
 
 ## Requirements ##
-- Python 3.x
+- Python 2 or 3
 - The pyserial module
     - Windows: http://pypi.python.org/pypi/pyserial
     - Debian/Ubuntu Linux: `sudo apt-get install python-serial`
@@ -57,7 +57,6 @@ Make sure you read your TV model's manual to see whether you need a "crossover/n
 I'll add more features as there's demand for them. Some that I forsee are:
 
 - Covering more of the available commands
-- Python 2.x support
 - Switching to a listening server model to improve performance
 
 Either create a feature request on the issues page or email me if theres stuff you'd like added.
