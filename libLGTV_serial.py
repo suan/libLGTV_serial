@@ -178,19 +178,19 @@ class LGTV:
             return self.codes[command]
 
     # Returns None on error, full response otherwise
-    def query_full(self, command):
-        self.connection.write(command + b'\r')
+    def query_full(self, code):
+        self.connection.write(code + b'\r')
         response = self.connection.read(10)
-        if is_success(response):
+        if self.is_success(response):
             return response
 
-    def query_data(self, command):
-        response = self.query_full(command)
+    def query_data(self, code):
+        response = self.query_full(code)
         return response and response[-3:-1]
 
     # returns None on error, 2-char status for status commands, and True otherwise
     def query(self, command):
-        if is_status(command):
+        if self.is_status(command):
             return self.query_data(self.lookup(command))
         else:
             return self.query_full(self.lookup(command)) and True
@@ -204,23 +204,23 @@ class LGTV:
     def hex_bytes_delta(self, hex_bytes, delta):
         return bytes(hex(int(hex_bytes, 16) + delta)[2:4], 'ascii')
 
-    def delta(self, command, delta):
-        level = self.query_data(command)
-        return command[0:6] + self.hex_bytes_delta(level, delta)
+    def delta(self, code, delta):
+        level = self.query_data(code)
+        return code[0:6] + self.hex_bytes_delta(level, delta)
 
-    def increment(self, command):
-        return self.delta(command, +1)
+    def increment(self, code):
+        return self.delta(code, +1)
 
-    def decrement(self, command):
-        return self.delta(command, -1)
+    def decrement(self, code):
+        return self.delta(code, -1)
 
-    def toggle(self, command, togglecommands):
-        level = self.query_data(command)
+    def toggle(self, code, togglecommands):
+        level = self.query_data(code)
         toggledata = (togglecommands[0][-2:], togglecommands[1][-2:])
         data = toggledata[0]
         if level == toggledata[0]:
             data = toggledata[1]
-        return command[0:6] + data
+        return code[0:6] + data
 
 
 
@@ -233,12 +233,12 @@ class LGTV:
                 self.connection = self.get_port()
             lock_path = os.path.join(tempfile.gettempdir(), '.' + command + '_lock')
             with FileLock(lock_path, timeout=0) as lock:
-                response = self.query(self.lookup(command))
+                response = self.query(command)
                 time.sleep(wait_secs)
         else:
             if self.connection == None:
                 self.connection = self.get_port_ensured()
-            response = self.query(self.lookup(command))
+            response = self.query(command)
         self.connection.close()
         return response
             
