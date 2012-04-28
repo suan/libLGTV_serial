@@ -12,11 +12,14 @@ actual_codes = {}
 common_codes = {
     'aspect43'      : b"kc 00 01",
     'aspect169'     : b"kc 00 02",
+    'aspectstatus'  : b"kc 00 ff",
     'poweroff'      : b"ka 00 00",
     'poweron'       : b"ka 00 01",
+    'powerstatus'   : b"ka 00 ff",
     'volumelevel'   : b"kf 00 ff",
     'mute'          : b"ke 00 00",
-    'unmute'        : b"ke 00 01"
+    'unmute'        : b"ke 00 01",
+    'mutestatus'    : b"ke 00 ff"
 }
 actual_codes['LK450_etc'] = common_codes.copy()
 actual_codes['LK450_etc'].update({
@@ -32,7 +35,8 @@ actual_codes['LK450_etc'].update({
     'inputhdmi1'            : b"xb 00 90",
     'inputhdmi2'            : b"xb 00 91",
     'inputhdmi3'            : b"xb 00 92",
-    'inputhdmi4'            : b"xb 00 93"
+    'inputhdmi4'            : b"xb 00 93",
+    'inputstatus'           : b"xb 00 ff"
 })
 actual_codes['PJ250_etc'] = common_codes.copy()
 actual_codes['PJ250_etc'].update({
@@ -47,7 +51,8 @@ actual_codes['PJ250_etc'].update({
     'inputrgbpc'            : b"xb 00 60",
     'inputhdmi1'            : b"xb 00 90",
     'inputhdmi2'            : b"xb 00 91",
-    'inputhdmi3'            : b"xb 00 92"
+    'inputhdmi3'            : b"xb 00 92",
+    'inputstatus'           : b"xb 00 ff"
 })
 actual_codes['LE5300_etc'] = common_codes.copy()
 actual_codes['LE5300_etc'].update({
@@ -61,7 +66,8 @@ actual_codes['LE5300_etc'].update({
     'inputhdmi1'            : b"xb 00 90",
     'inputhdmi2'            : b"xb 00 91",
     'inputhdmi3'            : b"xb 00 92",
-    'inputhdmi4'            : b"xb 00 93"
+    'inputhdmi4'            : b"xb 00 93",
+    'inputstatus'           : b"xb 00 ff"
 })
 actual_codes['LC7D_etc'] = common_codes.copy()
 actual_codes['LC7D_etc'].update({
@@ -75,7 +81,8 @@ actual_codes['LC7D_etc'].update({
     'inputcomp2'            : b"xb 00 41",
     'inputrgbpc'            : b"xb 00 60",
     'inputhdmi1'            : b"xb 00 90",
-    'inputhdmi2'            : b"xb 00 91"
+    'inputhdmi2'            : b"xb 00 91",
+    'inputstatus'           : b"xb 00 ff"
 })
 actual_codes['01C_etc'] = common_codes.copy()
 actual_codes['01C_etc'].update({
@@ -85,7 +92,8 @@ actual_codes['01C_etc'].update({
     'inputrgbdtv'   : b"kb 00 06",
     'inputrgbpc'    : b"kb 00 07",
     'inputhdmidtv'  : b"kb 00 08",
-    'inputhdmipc'   : b"kb 00 09"
+    'inputhdmipc'   : b"kb 00 09",
+    'inputstatus'   : b"kb 00 ff"
 })
 actual_codes['02C_etc'] = common_codes.copy()
 actual_codes['02C_etc'].update({
@@ -94,7 +102,8 @@ actual_codes['02C_etc'].update({
     'inputcomp2'    : b"kb 00 05",
     'inputrgbpc'    : b"kb 00 07",
     'inputhdmidtv'  : b"kb 00 08",
-    'inputhdmipc'   : b"kb 00 09"
+    'inputhdmipc'   : b"kb 00 09",
+    'inputstatus'   : b"kb 00 ff"
 })
 reverse_code_map = {
     'LK450_etc': ('LV2500', 'LV2520', 'LV3500', 'LV3520', 'LK330', 'LK430', 'LK450',
