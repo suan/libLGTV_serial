@@ -28,6 +28,6 @@ tv.add_toggle('input', 'inputrgbpc', 'inputdigitalcable')
 tv.debounce('togglepower')
 
 # Finally, send the command
-# Returns nothing on failure, 2-digit bytecode for status commands,
+# .send() Returns nothing on failure, 2-digit bytecode for status commands,
 # and True for other commands
-tv.send(sys.argv[1].lstrip("--"))
+print(tv.send(sys.argv[1].lstrip("--")))
