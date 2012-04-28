@@ -5,7 +5,7 @@ libLGTV_serial is a Python library to control LG TVs (or monitors with serial po
 - Python 3.x
 - The pyserial module
     - Windows: http://pypi.python.org/pypi/pyserial
-    - Debian/Ubuntu Linux: sudo apt-get install python-serial
+    - Debian/Ubuntu Linux: `sudo apt-get install python-serial`
 
 ## Supported Models/Operating Systems ##
 - All OSes are supported. If you run into trouble please let me know. 
@@ -46,6 +46,9 @@ This will make sure that all 'togglepower' calls within 0.5 seconds of the first
 ```
 tv.debounce('togglepower', 0.7)
 ```
+
+### Getting TV Status ###
+Every command sent to the `send()` method that ends with 'status' or 'level' will return a 2-digit bytestring represnting the status of the item. For some items, you'll need to refer to your model's manual to know what the status code means. For example, if `send('powerstatus')` returns `b'01'`, that means that the TV is currently on.
 
 ### Serial/RS232 Tips ###
 Make sure you read your TV model's manual to see whether you need a "crossover/null-modem" or "straight-through" cable or adapter, and buy/use the correct one.
