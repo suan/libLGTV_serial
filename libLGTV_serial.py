@@ -159,24 +159,6 @@ class LGTV:
             except serial.serialutil.SerialException:
                 time.sleep(0.07)
         return ser
-            
-    def available_commands(self):
-        print("Some features (such as a 4th HDMI port) might not be available for your TV model")
-        commands = self.codes.copy()
-        commands.update(self.toggles)
-        for command in commands.keys():
-            code = commands[command]
-            if command.endswith('level'):
-                print("%s : %s" % (command[:-5] + 'up', code[:-2] + b'??'))
-                print("%s : %s" % (command[:-5] + 'down', code[:-2] + b'??'))
-            else:
-                print("{0} : {1}".format(command, code))
-
-    def add_toggle(self, command, state0, state1):
-        self.toggles['toggle' + command] = (state0, state1)
-        
-    def debounce(self, command, wait_secs=0.5):
-        self.debounces[command] = wait_secs
     
     def status_code(self, code):
         return code[:-2] + b'ff'
@@ -219,22 +201,6 @@ class LGTV:
     def is_success(self, response):
         return response[-5:-3] == b'OK'
 
-    def send(self, command):
-        if command in self.debounces:
-            wait_secs = self.debounces[command]
-            if self.connection == None:
-                self.connection = self.get_port()
-            lock_path = os.path.join(tempfile.gettempdir(), '.' + command + '_lock')
-            with FileLock(lock_path, timeout=0) as lock:
-                response = self.query(self.lookup(command))
-                time.sleep(wait_secs)
-        else:
-            if self.connection == None:
-                self.connection = self.get_port_ensured()
-            response = self.query(self.lookup(command))
-        self.connection.close()
-        return response
-
     def hex_bytes_delta(self, hex_bytes, delta):
         return bytes(hex(int(hex_bytes, 16) + delta)[2:4], 'ascii')
 
@@ -255,5 +221,43 @@ class LGTV:
         if level == toggledata[0]:
             data = toggledata[1]
         return command[0:6] + data
+
+
+
+# ======= These are the methods you'll most probably want to use ==========
+
+    def send(self, command):
+        if command in self.debounces:
+            wait_secs = self.debounces[command]
+            if self.connection == None:
+                self.connection = self.get_port()
+            lock_path = os.path.join(tempfile.gettempdir(), '.' + command + '_lock')
+            with FileLock(lock_path, timeout=0) as lock:
+                response = self.query(self.lookup(command))
+                time.sleep(wait_secs)
+        else:
+            if self.connection == None:
+                self.connection = self.get_port_ensured()
+            response = self.query(self.lookup(command))
+        self.connection.close()
+        return response
+            
+    def available_commands(self):
+        print("Some features (such as a 4th HDMI port) might not be available for your TV model")
+        commands = self.codes.copy()
+        commands.update(self.toggles)
+        for command in commands.keys():
+            code = commands[command]
+            if command.endswith('level'):
+                print("%s : %s" % (command[:-5] + 'up', code[:-2] + b'??'))
+                print("%s : %s" % (command[:-5] + 'down', code[:-2] + b'??'))
+            else:
+                print("{0} : {1}".format(command, code))
+
+    def add_toggle(self, command, state0, state1):
+        self.toggles['toggle' + command] = (state0, state1)
+        
+    def debounce(self, command, wait_secs=0.5):
+        self.debounces[command] = wait_secs
             
 # end class LGTV
